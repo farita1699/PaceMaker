@@ -1,6 +1,9 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QLabel, QApplication, QMainWindow
+import mysql.connector
 import sys
+
+#Test file for running different test scripts
 
 def window():
     app = QApplication(sys.argv)
@@ -10,5 +13,20 @@ def window():
     win.show()
     sys.exit(app.exec_())
 
-window()
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="root",
+    database="pacemakerdatabase"
+)
+
+mycursor = db.cursor()
+mycursor.execute("SHOW DATABASES")
+
+
+for x in mycursor:
+  print(x)
+
+
 print("Test")
+window()
