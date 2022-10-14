@@ -1,4 +1,5 @@
 '''
+2022/10/13
 This file imports many modules from the PyQt.5 environment to generate a GUI. The last few lines define an 
 Application, and a Window (with size, title, and ability to exit).
 
@@ -28,5 +29,4 @@ if __name__ == "__main__":
     win.show()
     sys.exit(app.exec())
 
-
-    
+print(sys.version)

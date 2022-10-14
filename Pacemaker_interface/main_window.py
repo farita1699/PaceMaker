@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import mysql.connector
+import re
 
 #main window 
 
@@ -54,8 +56,15 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionHello_world)
         self.menubar.addAction(self.menuFile.menuAction())
 
+        #self.pushButton.clicked.connect(self.login)
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def showUserNamePassword(self):
+        print(self.lineEdit.text())
+        print(self.lineEdit_2.text())
+        
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -65,3 +74,20 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Log In"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionHello_world.setText(_translate("MainWindow", "Hello world :)"))
+
+
+db = mysql.connector.connect(
+    host="pacemaker-aws.cefpanbxdbio.us-east-1.rds.amazonaws.com",
+    user="admin",
+    passwd="admin123",
+    database="pacemakerdatabase"
+)
+
+mycursor = db.cursor()
+mycursor.execute("SELECT * FROM users")
+for x in mycursor:
+  print(x[0])
+  print(x[1])
+  print(x[2])
+#   userExists = re.search(r"/[a-zA-Z0-9_]*/g",x)
+#   print(userExists)
