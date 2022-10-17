@@ -85,9 +85,10 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor()
 mycursor.execute("SELECT * FROM users")
+h = {}
 for x in mycursor:
-  print(x[0])
-  print(x[1])
-  print(x[2])
+  h.append(x)
+
+  
 #   userExists = re.search(r"/[a-zA-Z0-9_]*/g",x)
 #   print(userExists)
