@@ -9,8 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from backend.login import check_duplicate, create_new_user
 import mysql.connector
 import re
+
 
 #main window 
 
@@ -56,14 +58,17 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionHello_world)
         self.menubar.addAction(self.menuFile.menuAction())
 
-        #self.pushButton.clicked.connect(self.login)
+        self.pushButton.clicked.connect(self.register)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def showUserNamePassword(self):
-        print(self.lineEdit.text())
-        print(self.lineEdit_2.text())
+    def register(self):
+        if (check_duplicate(self.lineEdit.text())):
+            #To do: make this an error text on the UI
+            print("Duplicate detected")
+        else:
+            create_new_user(self.lineEdit.text(), self.lineEdit_2.text())
         
 
     def retranslateUi(self, MainWindow):
@@ -75,19 +80,6 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionHello_world.setText(_translate("MainWindow", "Hello world :)"))
 
-
-db = mysql.connector.connect(
-    host="pacemaker-aws.cefpanbxdbio.us-east-1.rds.amazonaws.com",
-    user="admin",
-    passwd="admin123",
-    database="pacemakerdatabase"
-)
-
-mycursor = db.cursor()
-mycursor.execute("SELECT * FROM users")
-h = {}
-for x in mycursor:
-  h.append(x)
 
   
 #   userExists = re.search(r"/[a-zA-Z0-9_]*/g",x)
