@@ -33,6 +33,7 @@ def list_users():
     conn.close()
     return results
 
+#Delete for production
 def main():
     create_database()
     print(list_users())

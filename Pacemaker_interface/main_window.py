@@ -10,9 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from backend.login import check_duplicate, create_new_user
-import mysql.connector
-import re
-
 
 #main window 
 
