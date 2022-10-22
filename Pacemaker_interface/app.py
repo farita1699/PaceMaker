@@ -12,21 +12,15 @@ we determined this environment to suit our front-end needs.
 import sys
 
 from PyQt5.QtWidgets import (
-    QApplication, QDialog, QMainWindow, QMessageBox
+    QApplication
 )
-from PyQt5.uic import loadUi
-
-from main_window import Ui_MainWindow
-
-class Window(QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setupUi(self)
+from frontend.splash_screen import SplashScreen
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    win = Window()
-    win.show()
+
+    splash_screen = SplashScreen()
+    splash_screen.show()
     sys.exit(app.exec())
 
 print(sys.version)

@@ -7,7 +7,8 @@ def create_connection():
     conn = sqlite3.connect(dbpath)
     return conn
 
-def create_database(conn):
+def create_database():
+    conn = create_connection()
     c = conn.cursor()
     c.execute("""CREATE TABLE IF NOT EXISTS users(
         username text NOT NULL,
@@ -15,22 +16,26 @@ def create_database(conn):
         id integer PRIMARY KEY AUTOINCREMENT
     )""")
     conn.commit()
+    conn.close()
 
-def insert_users(conn, username, password):
+def insert_users(username, password):
+    conn = create_connection()
     c = conn.cursor()
     c.execute("INSERT INTO users (username, password) VALUES (?,?)", (username,password))
     conn.commit()
+    conn.close()
 
-def list_users(conn):
+def list_users():
+    conn = create_connection()
     c = conn.cursor()
     c.execute("SELECT * FROM users")
-    return c.fetchall()
-
-def main():
-    conn = create_connection()
-    create_database(conn)
-    insert_users(conn, 'Test', 'Test') 
-    print(list_users(conn))
+    results = c.fetchall()
     conn.close()
+    return results
+
+#Delete for production
+def main():
+    create_database()
+    print(list_users())
 
 main()
