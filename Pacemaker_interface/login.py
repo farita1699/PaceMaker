@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from backend.login import check_duplicate, create_new_user, login_check
+from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users
 
 class Ui_LoginForm(object):
     def setupUi(self, LoginForm):
@@ -101,6 +101,8 @@ class Ui_LoginForm(object):
         if (check_duplicate(self.UsernameInput.text())):
             #To do: make this an error text on the UI
             print("Duplicate detected")
+        elif(check_exceed_max_users()):
+            print("Exceed max users")
         else:
             create_new_user(self.UsernameInput.text(), self.PasswordInput.text())   
 

@@ -1,7 +1,7 @@
 import time
 from PyQt5.QtWidgets import QWidget, QProgressBar, QLabel, QFrame, QVBoxLayout
 from PyQt5.QtCore import Qt, QTimer
-from frontend.login import Window
+from frontend.login import Login
 
 class SplashScreen(QWidget):
     def __init__(self):
@@ -82,7 +82,7 @@ class SplashScreen(QWidget):
         self.labelLoading.move(0, self.progressBar.y() + 70)
         self.labelLoading.setObjectName('LabelLoading')
         self.labelLoading.setAlignment(Qt.AlignCenter)
-        self.labelLoading.setText('loading...')
+        self.labelLoading.setText('Connecting to the device...')
         self.labelLoading.setStyleSheet('''#LabelLoading {
             font-size: 30px;
             color: #e8e8eb;
@@ -98,7 +98,7 @@ class SplashScreen(QWidget):
             self.close()
 
             time.sleep(1)
-            self.win = Window()
-            self.win.show()
+            self.login = Login()
+            self.login.show()
 
         self.counter += 1

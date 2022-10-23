@@ -116,7 +116,7 @@ font-size: 30px;</string>
        <item>
         <widget class="QLineEdit" name="UsernameInput">
          <property name="styleSheet">
-          <string notr="true">height: 20px;
+          <string notr="true">height: 40px;
 color: rgb(255, 255, 255);</string>
          </property>
         </widget>

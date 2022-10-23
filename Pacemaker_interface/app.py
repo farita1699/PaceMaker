@@ -10,17 +10,20 @@ we determined this environment to suit our front-end needs.
 '''
 
 import sys
-
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import (
     QApplication
 )
 from frontend.splash_screen import SplashScreen
+from frontend.main import Main
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    splash_screen = SplashScreen()
-    splash_screen.show()
+    # splash_screen = SplashScreen()
+    # splash_screen.show()
+    main = Main()
+    main.show()
     sys.exit(app.exec())
 
 print(sys.version)
