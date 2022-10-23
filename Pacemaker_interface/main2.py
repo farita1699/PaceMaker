@@ -332,8 +332,7 @@ class Ui_Main(object):
         self.comboBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Main)
 
-        self.switchMode()
-        self.comboBox.currentTextChanged.connect(self.switchMode)
+        
 
     def retranslateUi(self, Main):
         _translate = QtCore.QCoreApplication.translate
