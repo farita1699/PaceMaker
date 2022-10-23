@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from frontend.ui_chris_dashboard import Main
 from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users
 
 class Ui_LoginForm(object):
@@ -64,6 +65,7 @@ class Ui_LoginForm(object):
         self.PasswordInput = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.PasswordInput.setStyleSheet("height: 40px;\n"
 "color: rgb(255, 255, 255);")
+        self.PasswordInput.setEchoMode(QtWidgets.QLineEdit.Password)
         self.PasswordInput.setObjectName("PasswordInput")
         self.verticalLayout_2.addWidget(self.PasswordInput)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -77,7 +79,7 @@ class Ui_LoginForm(object):
         self.Register.setObjectName("Register")
         self.horizontalLayout.addWidget(self.Register)
         self.Login = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.Login.setStyleSheet("background-color: rgb(109, 109, 109);\n"
+        self.Login.setStyleSheet("background-color: rgb(207, 207, 207);\n"
 "border-radius: 10px;\n"
 "height: 50px;")
         self.Login.setObjectName("Login")
@@ -108,6 +110,8 @@ class Ui_LoginForm(object):
 
     def login(self):
         if (login_check(self.UsernameInput.text(), self.PasswordInput.text())):
+            self.main = Main()
+            self.main.show()
             print("Successful")
          
     def retranslateUi(self, LoginForm):

@@ -1,5 +1,4 @@
-# from main import Ui_Main
-from main3 import Ui_MainWindow
+from ui_chris_dashboard import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
 
 class Main(QMainWindow, Ui_MainWindow):

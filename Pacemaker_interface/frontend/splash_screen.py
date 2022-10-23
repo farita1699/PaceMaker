@@ -97,7 +97,7 @@ class SplashScreen(QWidget):
             self.timer.stop()
             self.close()
 
-            time.sleep(1)
+            time.sleep(0.5)
             self.login = Login()
             self.login.show()
 
