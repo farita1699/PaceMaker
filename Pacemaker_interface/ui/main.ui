@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Main</class>
- <widget class="QMainWindow" name="Main">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,605 +13,1439 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(54, 54, 54);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>70</y>
-      <width>1081</width>
-      <height>901</height>
+      <x>620</x>
+      <y>10</y>
+      <width>160</width>
+      <height>50</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="title">
-       <property name="font">
-        <font>
-         <pointsize>-1</pointsize>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font-size: 30px;</string>
-       </property>
-       <property name="text">
-        <string>AOO Mode</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="editable">
-          <bool>false</bool>
-         </property>
-         <property name="currentText">
-          <string>AOO</string>
-         </property>
-         <property name="currentIndex">
-          <number>0</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>AOO</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>VOO</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>AAI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>VVI</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QFrame" name="LRL_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_9">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>-10</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_10">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_9">
-             <item>
-              <widget class="QLabel" name="LRL">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Lower Rate Limit (bpm)</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="LRL_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="LRL_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="URL_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_3">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>141</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <widget class="QLabel" name="URL">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Upper Rate Limit (bpm)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="URL_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="URL_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <widget class="QFrame" name="APW_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_7">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_8">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
-             <item>
-              <widget class="QLabel" name="APW">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Atrial Pulse Width (ms)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="APW_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="APW_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="AA_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_6">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <item>
-              <widget class="QLabel" name="AA">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Atrial Amplitude (V)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="AA_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="AA_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_11">
-       <item>
-        <widget class="QFrame" name="VPW_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_12">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_12">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_10">
-             <item>
-              <widget class="QLabel" name="VPW">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Ventricular Pulse Width (ms)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="VPW_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="VPW_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="VA_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_13">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>154</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_13">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_11">
-             <item>
-              <widget class="QLabel" name="VA">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Ventricular Amplitude (V)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="AA_input_2"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="VA_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_14">
-       <item>
-        <widget class="QFrame" name="VRP_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_15">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_15">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_12">
-             <item>
-              <widget class="QLabel" name="VRP">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Ventricular Refractory Period (ms)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="VRP_input"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="VRP_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="ARP_frame">
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget_16">
-          <property name="geometry">
-           <rect>
-            <x>-1</x>
-            <y>-1</y>
-            <width>501</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_16">
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_13">
-             <item>
-              <widget class="QLabel" name="ARP">
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Atrial Refractory Period (ms)</string>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="AA_input_3"/>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="ARP_value">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+    </property>
+    <property name="text">
+     <string>AOO Mode</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>70</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(125, 125, 125);
+color: rgb(214, 214, 214);
+font-size: 20px;</string>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <property name="currentText">
+     <string>AOO</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>AOO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>VOO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>AAI</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>VVI</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QProgressBar" name="PaceMakerConnectionStatus">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>870</y>
+      <width>301</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(231, 231, 231);
+</string>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>240</y>
+      <width>1051</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
+    <widget class="QWidget" name="AOO_Widget">
+     <widget class="QLabel" name="AOO_ATR_PW_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>200</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO__ATR_PW_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Atrial Pulse Width</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_ATR_AMP_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>200</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AOO_AMP_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_URL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>90</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_AMP_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Atrial Amplitude</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AOO_LRL_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AOO_ATR_PW_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_URL_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>19</y>
+        <width>400</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;
+</string>
+      </property>
+      <property name="text">
+       <string>Upper Rate Limit</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AOO_URL_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_LRL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>90</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AOO_LRL_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>19</y>
+        <width>400</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Lower Rate Limit</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="VVI_Widget">
+     <widget class="QLabel" name="VVI_REFRACT_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>310</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_THRESH_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>310</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_LRL_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>400</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Lower Rate Limit</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_VENT_AMP_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_REFRACT_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>249</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Refractory Period</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_PW_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>200</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_AMP_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Ventricular Amplitude</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_LRL_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_URL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>90</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_VENT_PW_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_LRL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>90</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_AMP_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>200</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_PW_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Ventricular Pulse Width</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_REFRACT_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>310</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_URL_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_URL_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>29</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;
+</string>
+      </property>
+      <property name="text">
+       <string>Upper Rate Limit</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VVI_VENT_THRESH_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>310</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VVI_VENT_THRESH_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>249</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Ventricle Threshold </string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="VOO_Widget">
+     <widget class="QLabel" name="VOO_VENT_PW_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>200</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_VENT_PW_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Ventricular Pulse Width</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_VENT_AMP_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>200</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VOO_VENT_AMP_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_URL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>90</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_VENT_AMP_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Ventricular Amplitude</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VOO_LRL_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VOO_VENT_PW_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_URL_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>19</y>
+        <width>400</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;
+</string>
+      </property>
+      <property name="text">
+       <string>Upper Rate Limit</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="VOO_URL_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_LRL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>90</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="VOO_LRL_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>19</y>
+        <width>400</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Lower Rate Limit</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="AAI_Widget">
+     <widget class="QLabel" name="AAI_ATR_PW_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>200</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_ATR_PW_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Atrial Pulse Width</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_ATR_AMP_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>200</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_ATR_AMP_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_URL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>90</y>
+        <width>81</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_ATR_AMP_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>139</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Atrial Amplitude</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_LRL_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_ATR_PW_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_URL_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>29</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;
+</string>
+      </property>
+      <property name="text">
+       <string>Upper Rate Limit</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_URL_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>90</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_LRL_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>90</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[BPM]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_LRL_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>29</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Lower Rate Limit</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_REFRACT_Field">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>310</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_REFRACT_Label">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>249</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Refractory Period</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_REFRACT_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>870</x>
+        <y>310</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[ms]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_ATR_THRESH_Label">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>249</y>
+        <width>400</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+font-size: 30px;</string>
+      </property>
+      <property name="text">
+       <string>Atrial Threshold </string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="AAI_ATR_THRESH_Field">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>310</y>
+        <width>310</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AAI_ATR_THRESH_UNITS">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>310</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 16px;
+color: rgb(212, 212, 212);</string>
+      </property>
+      <property name="text">
+       <string>[V]</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>800</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(231, 231, 231);
+</string>
+    </property>
+    <property name="text">
+     <string>Device Connection Status</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Logout">
+    <property name="geometry">
+     <rect>
+      <x>1210</x>
+      <y>40</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(218, 218, 218);
+font-weight:bold;
+font-size: 20px;
+border-radius: 15px;</string>
+    </property>
+    <property name="text">
+     <string>Log Out</string>
+    </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <resources/>
  <connections/>
