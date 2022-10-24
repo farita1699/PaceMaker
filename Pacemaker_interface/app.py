@@ -10,7 +10,6 @@ we determined this environment to suit our front-end needs.
 '''
 
 import sys
-
 from PyQt5.QtWidgets import (
     QApplication
 )

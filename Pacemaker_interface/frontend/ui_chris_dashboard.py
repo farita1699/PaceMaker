@@ -1,7 +1,7 @@
-from login import Ui_LoginForm
+from ui_chris_dashboard import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
 
-class Login(QMainWindow, Ui_LoginForm):
+class Main(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
