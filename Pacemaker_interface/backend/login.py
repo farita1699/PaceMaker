@@ -8,7 +8,7 @@ def check_duplicate(inputUserName):
     
 def check_exceed_max_users():
     users = list_users()
-    if (len(users) > 10): #Check if more than 10 users exist in db
+    if (len(users) >= 10): #Check if more than 10 users exist in db
         return True
     return False
 
