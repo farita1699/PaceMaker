@@ -12,6 +12,28 @@ def check_exceed_max_users():
         return True
     return False
 
+def check_new_password(password):
+    l, u, d, spacecount = 0, 0 ,0, 0
+    capitalalphabets="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    smallalphabets="abcdefghijklmnopqrstuvwxyz"
+    digits="0123456789"
+    for i in password:
+        # counting lowercase alphabets
+        if (i in smallalphabets):
+            l+=1           
+        # counting uppercase alphabets
+        if (i in capitalalphabets):
+            u+=1           
+        # counting digits
+        if (i in digits):
+            d+=1
+        if (i == " "):
+            spacecount+=1           
+        # counting the mentioned special characters   
+    if (l<1 or u<1 or d<1 or spacecount > 0 or len(password) < 8):
+        return True
+    return False
+
 def create_new_user(username, password):
     insert_users(username, password)
     print(list_users())
