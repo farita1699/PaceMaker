@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
 from frontend.main import Main
 from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users, check_new_password
 
@@ -99,14 +101,30 @@ class Ui_LoginForm(object):
         self.retranslateUi(LoginForm)
         QtCore.QMetaObject.connectSlotsByName(LoginForm)
 
+    def show_register_popup(self, input):
+        msg = QMessageBox()
+        msg.setWindowTitle("PaceMaker")
+        if (input == 1):
+            msg.setText("Duplicate username detected")
+        elif (input == 2):
+            msg.setText("Duplicate username detected")
+        elif(input == 3):
+            msg.setText("Inappropriate Password")
+        else:
+            msg.setText("Test")
+        x = msg.exec_()
+
     def register(self):
         if (check_duplicate(self.UsernameInput.text())):
             #To do: make this an error text on the UI
             print("Duplicate detected")
+            self.show_register_popup(1)
         elif(check_exceed_max_users()):
             print("Exceed max users")
+            self.show_register_popup(2)
         elif(check_new_password(self.PasswordInput.text())):
             print("Inappropriate Password")
+            self.show_register_popup(3)
         else:
             create_new_user(self.UsernameInput.text(), self.PasswordInput.text())   
 
@@ -115,6 +133,7 @@ class Ui_LoginForm(object):
             self.main = Main()
             self.main.show()
             print("Successful")
+
          
     def retranslateUi(self, LoginForm):
         _translate = QtCore.QCoreApplication.translate
