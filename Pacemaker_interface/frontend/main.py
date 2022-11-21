@@ -24,5 +24,9 @@ class Main(QMainWindow, Ui_MainWindow):
             self.stackedWidget.setCurrentWidget(self.AAI_Widget)
         elif self.comboBox.currentText() == "VVI":
             self.stackedWidget.setCurrentWidget(self.VVI_Widget)
+
+    def initializeParameters(self):
+        
+
         
         
