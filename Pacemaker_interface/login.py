@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
 from frontend.main import Main
-from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users, check_new_password
+from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users, check_new_password, get_user_info
 
 class Ui_LoginForm(object):
     def setupUi(self, LoginForm):
@@ -129,7 +129,9 @@ class Ui_LoginForm(object):
             create_new_user(self.UsernameInput.text(), self.PasswordInput.text())   
 
     def login(self):
-        if (login_check(self.UsernameInput.text(), self.PasswordInput.text())):
+        userID = login_check(self.UsernameInput.text(), self.PasswordInput.text())
+        if (userID):
+            get_user_info(userID, self.UsernameInput.text())
             self.main = Main()
             self.main.show()
             print("Successful")

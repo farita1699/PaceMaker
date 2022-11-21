@@ -10,6 +10,7 @@
 
 import time
 from PyQt5 import QtCore, QtGui, QtWidgets
+import config
 # from frontend.login import Login
 
 
@@ -566,6 +567,7 @@ class Ui_MainWindow(object):
         self.Logout.clicked.connect(self.logout)
 
 ##New addition
+        self.initializeParameters()
         self.switchMode()
         self.comboBox.currentTextChanged.connect(self.switchMode)
 ##New done
@@ -639,5 +641,10 @@ class Ui_MainWindow(object):
             self.stackedWidget.setCurrentWidget(self.AAI_Widget)
         elif self.comboBox.currentText() == "VVI":
             self.stackedWidget.setCurrentWidget(self.VVI_Widget)
+
+    def initializeParameters(self):
+        self.AOO_LRL_Field.setPlainText("Test")
+        print(config.cache)
+
         
         

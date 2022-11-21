@@ -1,4 +1,6 @@
-from database.db import insert_users, list_users
+from database.db import insert_users, list_users, list_parameters
+import config
+
 def check_duplicate(inputUserName):
     users = list_users()
     for user in users:
@@ -37,10 +39,24 @@ def check_new_password(password):
 def create_new_user(username, password):
     insert_users(username, password)
     print(list_users())
+    print(list_parameters())
 
 def login_check(inputUserName, inputPassword):
     users = list_users()
     for user in users:
         if (inputUserName == user[0] and inputPassword == user[1]):
-            return True
-    return False
+            return user[2]
+    return 0
+
+def get_user_info(id, username):
+    allAOOParameters = list_parameters('AOO')
+    for AOOParameters in allAOOParameters:
+        if (AOOParameters[4] == id):
+            config.cache['AOO'] = {
+                'LRL': AOOParameters[0],
+                'URL': AOOParameters[1],
+                'APW': AOOParameters[2],
+                'AA': AOOParameters[3]
+                }
+    config.cache['Username'] = username
+    
