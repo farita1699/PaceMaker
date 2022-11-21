@@ -2,7 +2,7 @@ from display.login import Ui_LoginForm
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, QLineEdit
 
 from frontend.main import Main
-from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users, check_new_password, check_new_username
+from backend.login import check_duplicate, create_new_user, login_check, check_exceed_max_users, check_new_password, check_new_username, get_user_info
 
 
 class Login(QMainWindow, Ui_LoginForm):
@@ -49,9 +49,13 @@ class Login(QMainWindow, Ui_LoginForm):
             create_new_user(self.UsernameInput.text(), self.PasswordInput.text())   
 
     def login(self):
-        if (login_check(self.UsernameInput.text(), self.PasswordInput.text())):
-            self.main = Main()
-            self.main.show()
-            print("Successful")
+        user_id = login_check(self.UsernameInput.text(), self.PasswordInput.text())
+        if (user_id):
+            if (get_user_info(user_id, self.UsernameInput.text())):
+                self.main = Main()
+                self.main.show()
+            else:
+                print("Error: get_user_info(user_id, username) failed")
+            
         else:
             self.show_login_popup()

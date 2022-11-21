@@ -1,6 +1,8 @@
 from display.main import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
+from backend.login import list_parameters
 import time
+import config
 
 class Main(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -26,7 +28,9 @@ class Main(QMainWindow, Ui_MainWindow):
             self.stackedWidget.setCurrentWidget(self.VVI_Widget)
 
     def initializeParameters(self):
-        
+
+        self.AOO_LRL_Field.setPlainText(str(config.cache['AOO']['LRL']))
+        print(config.cache)
 
         
         

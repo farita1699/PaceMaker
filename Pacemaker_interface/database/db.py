@@ -73,11 +73,20 @@ def list_users():
     conn.close()
     return results
 
-def list_parameters(mode):
+def list_parameters(mode='AOO'):
     conn = create_connection()
     c = conn.cursor()
     if (mode == "AOO"):
         c.execute("SELECT * FROM AOO")
+    elif (mode == "VOO"):
+        c.execute("SELECT * FROM VOO")
+    elif (mode == "AAI"):
+        c.execute("SELECT * FROM AAI")
+    elif (mode == "VVI"):
+        c.execute("SELECT * FROM VVI")
+    else:
+        print("Coding Error Detected: Mode in list_parameter(mode) is not recognized")
+        return False
     results = c.fetchall()
     conn.close()
     return results
@@ -86,6 +95,9 @@ def list_parameters(mode):
 def main():
     create_database()
     print(list_users())
-    print(list_parameters("AOO"))
+    print("AOO Data: ", list_parameters("AOO"))
+    print("VOO Data: ", list_parameters("VOO"))
+    print("AAI Data: ", list_parameters("AAI"))
+    print("VVI Data: ", list_parameters("VVI"))
 
 main()

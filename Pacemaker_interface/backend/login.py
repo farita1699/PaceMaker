@@ -61,13 +61,43 @@ def login_check(inputUserName, inputPassword):#This functio
 
 def get_user_info(id, username):
     allAOOParameters = list_parameters('AOO')
-    for AOOParameters in allAOOParameters:
-        if (AOOParameters[4] == id):
+    allVOOParameters = list_parameters('VOO')
+    allAAIParameters = list_parameters('AAI')
+    allVVIParameters = list_parameters('VVI')
+    if (len(allAOOParameters) != len(allVOOParameters) or len(allVOOParameters) != len(allAAIParameters) or len(allAAIParameters) != len(allVVIParameters)):
+        return False
+
+    for i in range(len(allAOOParameters)):
+        if (allAOOParameters[i][4] == id and allVOOParameters[i][4] == id and allAAIParameters[i][6] == id and allVVIParameters[i][6] == id):
             config.cache['AOO'] = {
-                'LRL': AOOParameters[0],
-                'URL': AOOParameters[1],
-                'APW': AOOParameters[2],
-                'AA': AOOParameters[3]
+                'LRL': allAOOParameters[i][0],
+                'URL': allAOOParameters[i][1],
+                'APW': allAOOParameters[i][2],
+                'AA': allAOOParameters[i][3]
+                }
+            config.cache['VOO'] = {
+                'LRL': allVOOParameters[i][0],
+                'URL': allVOOParameters[i][1],
+                'VPW': allVOOParameters[i][2],
+                'VA': allVOOParameters[i][3]
+                }
+            config.cache['AAI'] = {
+                'LRL': allAAIParameters[i][0],
+                'URL': allAAIParameters[i][1],
+                'APW': allAAIParameters[i][2],
+                'AA': allAAIParameters[i][3],
+                'AT': allAAIParameters[i][4],
+                'RP': allAAIParameters[i][5],
+                }
+            config.cache['VVI'] = {
+                'LRL': allVVIParameters[i][0],
+                'URL': allVVIParameters[i][1],
+                'VPW': allVVIParameters[i][2],
+                'VA': allVVIParameters[i][3],
+                'VT': allVVIParameters[i][4],
+                'RP': allVVIParameters[i][5],
                 }
     config.cache['Username'] = username
+    print(config.cache)
+    return True
     
