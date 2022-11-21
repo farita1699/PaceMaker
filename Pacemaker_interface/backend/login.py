@@ -1,4 +1,5 @@
 from database.db import insert_users, list_users
+
 def check_duplicate(inputUserName):
     users = list_users()
     for user in users:
@@ -57,4 +58,5 @@ def login_check(inputUserName, inputPassword):#This functio
     
     if (inputUserName != user[0] or inputPassword != user[1]): 
         return False
+
     
