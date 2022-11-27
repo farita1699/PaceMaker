@@ -58,10 +58,10 @@ def insert_users(username, password):
     conn = create_connection()
     c = conn.cursor()
     c.execute("INSERT INTO users (username, password) VALUES (?,?)", (username,password))
-    c.execute("INSERT INTO AOO (LRL, URL, APW, AA) VALUES (?,?,?,?)", (60,120,0.4,3.5))
-    c.execute("INSERT INTO VOO (LRL, URL, VPW, VA) VALUES (?,?,?,?)", (60,120,0.4,3.5))
-    c.execute("INSERT INTO AAI (LRL, URL, APW, AA, AT, RP) VALUES (?,?,?,?,?,?)", (60,120,0.4,3.5,3.75,250))
-    c.execute("INSERT INTO VVI (LRL, URL, VPW, VA, VT, RP) VALUES (?,?,?,?,?,?)", (60,120,0.4,3.5,3.75,320))
+    c.execute("INSERT INTO AOO (LRL, URL, APW, AA) VALUES (?,?,?,?)", (60,120,1,5))
+    c.execute("INSERT INTO VOO (LRL, URL, VPW, VA) VALUES (?,?,?,?)", (60,120,1,5))
+    c.execute("INSERT INTO AAI (LRL, URL, APW, AA, AT, RP) VALUES (?,?,?,?,?,?)", (60,120,1,5,0,250))
+    c.execute("INSERT INTO VVI (LRL, URL, VPW, VA, VT, RP) VALUES (?,?,?,?,?,?)", (60,120,1,5,0,320))
     conn.commit()
     conn.close()
 
@@ -90,6 +90,13 @@ def list_parameters(mode='AOO'):
     results = c.fetchall()
     conn.close()
     return results
+
+def update_parameters(mode, parameter, value, id):
+    conn = create_connection()
+    c = conn.cursor()
+    c.execute("UPDATE {mode} SET {parameter} = {value} WHERE id = {id}".format(mode=mode,parameter=parameter,value=value,id=id))
+    conn.commit()
+    conn.close()
 
 #Delete for production
 def main():

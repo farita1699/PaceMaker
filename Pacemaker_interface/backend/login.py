@@ -97,7 +97,7 @@ def get_user_info(id, username):
                 'VT': allVVIParameters[i][4],
                 'RP': allVVIParameters[i][5],
                 }
-    config.cache['Username'] = username
+    config.cache['id'] = id
     print(config.cache)
     return True
     
