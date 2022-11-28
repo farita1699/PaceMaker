@@ -4,6 +4,7 @@ from serial_communication import ConnectionHandler
 from database.db import update_parameters, list_parameters
 import time
 import config
+from frontend.graph import Graph
 
 
 class Main(QMainWindow, Ui_MainWindow):
@@ -147,6 +148,9 @@ class Main(QMainWindow, Ui_MainWindow):
         self.conn.send_data_to_pacemaker(params)
         
 
+    def open_graph(self):
+        self.graph = Graph()
+        self.graph.show()
     
 
         

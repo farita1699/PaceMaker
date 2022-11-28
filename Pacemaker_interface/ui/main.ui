@@ -42,7 +42,7 @@
 font-size: 30px;</string>
     </property>
     <property name="text">
-     <string>AOO Mode</string>
+     <string>Mode</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
