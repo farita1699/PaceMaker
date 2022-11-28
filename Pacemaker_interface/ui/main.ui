@@ -42,7 +42,7 @@
 font-size: 30px;</string>
     </property>
     <property name="text">
-     <string>Mode</string>
+     <string>AOO Mode</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
@@ -133,7 +133,7 @@ font-size: 20px;</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="AOO_Widget">
      <widget class="QLabel" name="AOO_ATR_PW_UNITS">
@@ -1719,7 +1719,7 @@ border-radius: 15px;</string>
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>780</x>
+      <x>890</x>
       <y>690</y>
       <width>181</width>
       <height>41</height>
@@ -1736,7 +1736,7 @@ border-radius: 10px;</string>
    <widget class="QPushButton" name="transmitButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>320</x>
       <y>690</y>
       <width>181</width>
       <height>41</height>
@@ -1748,6 +1748,40 @@ border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Transmit Signal</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="graphButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>690</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(177, 179, 180);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Open Graph</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>630</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(177, 179, 180);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Stop Signal</string>
     </property>
    </widget>
   </widget>

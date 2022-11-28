@@ -9,10 +9,13 @@ class Graph(QMainWindow, Ui_Graph):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
-        self.conn = ConnectionHandler()
-        self.graphing = GraphWindow()
-        #self.conn.ser.ecg_data_update.connect(self.update_graph)
+        self.graphHandle = GraphWindow(self.plots)
+
+    def update_plot(self, atr, vtr):
+        print("Update")
+        self.graphHandle.update(atr, vtr)
 
     def switchPlot(self):
-        if self.EGram_comboBox.currentText() == "Atrial Data":
-            self.graphing.plot_ecg()
+        # if self.EGram_comboBox.currentText() == "Atrial Data":
+        #     self.graphing.plot_ecg()
+        pass

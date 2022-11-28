@@ -60,8 +60,8 @@ class _SerialHandler(QThread):
         self._send_params = False
         self._req_ecg = False
         self._req_com = True
-        self.atr = False
-        self.vent = False
+        self.atr = True
+        self.vent = True
         self._lock = Lock() 
 
         
@@ -76,8 +76,7 @@ class _SerialHandler(QThread):
                             self._send_params = False
                             self._conn.write(self._sent_data)
                         elif self._req_ecg:
-                            #self._req_ecg = False
-                            
+                            self._req_ecg = False
                             # ["Pacing Mode", "Atrial Pulse Width", "Ventricular Pulse Width",
                             # "Lower Rate Limit", "Atrial Amplitude", "Ventricular Amplitude",
                             # "Atrial Refractory Period", "Ventricular Refractory Period", "Atrial Sensitivity",
@@ -101,7 +100,7 @@ class _SerialHandler(QThread):
             return
         #print("Running")
         returned = unpack("=2H6B2H2B", self._conn.read(16))
-        print("Returned: ", returned)
+        #print("Returned: ", returned)
         atr_val = returned[0]/10000 if atr else 0
         vent_val = returned[1]/10000 if vent else 0
         if atr or vent:
@@ -177,7 +176,10 @@ class ConnectionHandler(QThread):
         self.ser.start()
         self.ser.start_serial_comm('COM3')
     def send_data_to_pacemaker(self, params: Dict) -> None:
+        self.ser._running = True
         self.ser.send_params_to_pacemaker(params)
+    def stop(self):
+        self.ser._running = False
         
 
 

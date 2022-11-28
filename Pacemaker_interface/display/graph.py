@@ -187,6 +187,7 @@ class Ui_Graph(object):
         
        #new
         self.btn_close.clicked.connect(Graph.close)
+        self.EGram_comboBox.currentTextChanged.connect(self.switchPlot)
         #end of new^^ 
         self.retranslateUi(Graph)
         QtCore.QMetaObject.connectSlotsByName(Graph)

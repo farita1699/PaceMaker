@@ -1,6 +1,8 @@
 from display.main import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import pyqtSignal
 from serial_communication import ConnectionHandler
+from graph_window import GraphWindow
 from database.db import update_parameters, list_parameters
 import time
 import config
@@ -8,19 +10,15 @@ from frontend.graph import Graph
 
 
 class Main(QMainWindow, Ui_MainWindow):
+    # signal = pyqtSignal(int, int)
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
         self.conn = ConnectionHandler()
-        self.conn.ser.ecg_data_update.connect(self.test)
-        self.conn.ser.params_received.connect(self.test2)
 
-    def test(self, atr, vtr):
-        print("Atrial data: ", atr)
-        print("Ventricular data: ", vtr)
-
-    def test2(self):
-        print("Test something else")
+        self.graph = Graph()
+        self.conn.ser.ecg_data_update.connect(self.graph.update_plot)
 
     def logout(self):
         time.sleep(0.2)
@@ -149,8 +147,10 @@ class Main(QMainWindow, Ui_MainWindow):
         
 
     def open_graph(self):
-        self.graph = Graph()
         self.graph.show()
+    
+    def stopTransmitData(self):
+        self.conn.stop()
     
 
         
