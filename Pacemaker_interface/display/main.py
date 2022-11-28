@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
         self.AOO_AMP_FIELD.setStyleSheet("color: white;")
         self.AOO_AMP_FIELD.lineEdit().setReadOnly(True)
         self.AOO_AMP_FIELD.setMinimum(0)
-        self.AOO_AMP_FIELD.setMaximum(50.0)
+        self.AOO_AMP_FIELD.setMaximum(5.0)
         self.AOO_AMP_FIELD.setSingleStep(0.1)
         self.AOO_AMP_FIELD.setProperty("value", 5.0)
         self.AOO_AMP_FIELD.setObjectName("AOO_AMP_FIELD")

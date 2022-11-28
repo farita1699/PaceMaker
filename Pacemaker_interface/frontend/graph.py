@@ -12,7 +12,7 @@ class Graph(QMainWindow, Ui_Graph):
         self.graphHandle = GraphWindow(self.plots)
 
     def update_plot(self, atr, vtr):
-        print("Update")
+        #print("Update")
         self.graphHandle.update(atr, vtr)
 
     def switchPlot(self):

@@ -94,15 +94,15 @@ class _SerialHandler(QThread):
                 sleep(1)
 
     def read_data(self, atr: bool, vent: bool) -> None:
-        if self._conn.in_waiting < 16: 
+        if self._conn.in_waiting < 28: 
             self._req_ecg = True
             #print("Line 100: ", self._conn.in_waiting)
             return
         #print("Running")
-        returned = unpack("=2H6B2H2B", self._conn.read(16))
-        #print("Returned: ", returned)
-        atr_val = returned[0]/10000 if atr else 0
-        vent_val = returned[1]/10000 if vent else 0
+        returned = unpack("=2d6B2H2B", self._conn.read(28))
+        print("Returned: ", returned)
+        atr_val = returned[0] if atr else 0
+        vent_val = returned[1] if vent else 0
         if atr or vent:
             self.ecg_data_update.emit(atr_val, vent_val)
             self._req_ecg = True
@@ -111,7 +111,9 @@ class _SerialHandler(QThread):
         with self._lock:
             self._req_com = False
             self._req_ecg = True
+            
             paramarray = [12, 5, *[int(params_to_send[key]) for key in self._PARAMS_ORDER]]
+            #paramarray = [12, 5, 1, 3, 3, 60, 5, 5, 250, 320, 4, 4]
             print('Sending Data:')
             print(paramarray)
             self._conn.write(pack("=8B2H2B", *paramarray))

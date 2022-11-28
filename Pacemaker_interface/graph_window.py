@@ -52,7 +52,7 @@ class GraphWindow(PlotWidget):
         self.maxvals = self.maxvals + 1
         
     def update(self, atrial_voltage: float, ventricular_voltage: float):
-        print(atrial_voltage, ventricular_voltage)
+        #print(atrial_voltage, ventricular_voltage)
         if self.maxvals <= 400:
             self._atrial_data = np.append(self._atrial_data, atrial_voltage)
             self._ventricular_data = np.append(self._ventricular_data, ventricular_voltage)
