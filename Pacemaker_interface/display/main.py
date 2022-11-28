@@ -637,7 +637,8 @@ class Ui_MainWindow(object):
         self.initializeParameters()
         self.switchMode()
         self.comboBox.currentTextChanged.connect(self.switchMode)
-        self.saveButton.clicked.connect(self.saveParameters)        
+        self.saveButton.clicked.connect(self.saveParameters)  
+        self.transmitButton.clicked.connect(self.transmitData)      
         ##New done
 
     def retranslateUi(self, MainWindow):

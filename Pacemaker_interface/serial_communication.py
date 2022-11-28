@@ -43,11 +43,10 @@ class _SerialHandler(QThread):
     _PARAMS_FMT_STR, _ECG_FMT_STR, _ECG_DATA_STR = "=6BH3BHH3BHBB", f"={_num_floats}f", f"={_num_floats // 2}f"
     _PARAMS_NUM_BYTES, _ECG_NUM_BYTES, _ECG_DATA = calcsize(_PARAMS_FMT_STR), calcsize(_ECG_FMT_STR), calcsize(
         _ECG_DATA_STR)
-    _REQUEST_ECG = pack("=B33x", 0x55)
-    _PARAMS_ORDER = ["Lower Rate Limit", "Atrial Amplitude", "Atrial Pulse Width",
-                     "Atrial Sensitivity", "ARP", "Ventricular Amplitude", "Ventricular Pulse Width",
-                     "Ventricular Sensitivity", "VRP", "Fixed AV Delay", "Activity Threshold",
-                     "Reaction Time", "Response Factor", "Recovery Time", "Maximum Sensor Rate", "Pacing Mode"]
+    _PARAMS_ORDER = ["Pacing Mode", "Atrial Pulse Width", "Ventricular Pulse Width",
+                    "Lower Rate Limit", "Atrial Amplitude", "Ventricular Amplitude",
+                    "Atrial Refractory Period", "Ventricular Refractory Period", "Atrial Sensitivity",
+                    "Ventricular Sensitivity"]
 
     def __init__(self):
         super().__init__()
@@ -77,9 +76,14 @@ class _SerialHandler(QThread):
                             self._send_params = False
                             self._conn.write(self._sent_data)
                         elif self._req_ecg:
-                            self._req_ecg = False
-                            req_array = [12, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                            req_bytes = pack("=6BH3BHH3BHBB", *req_array)
+                            #self._req_ecg = False
+                            
+                            # ["Pacing Mode", "Atrial Pulse Width", "Ventricular Pulse Width",
+                            # "Lower Rate Limit", "Atrial Amplitude", "Ventricular Amplitude",
+                            # "Atrial Refractory Period", "Ventricular Refractory Period", "Atrial Sensitivity",
+                            # "Ventricular Sensitivity"]
+                            req_array = [12, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                            req_bytes = pack("=8B2H2B", *req_array)
                             self._conn.write(req_bytes)
                             Timer(0.02, self.read_data, args=(self.atr, self.vent)).start()
                 except Exception as e:
@@ -91,25 +95,29 @@ class _SerialHandler(QThread):
                 sleep(1)
 
     def read_data(self, atr: bool, vent: bool) -> None:
-        if self._conn.in_waiting < 24: 
+        if self._conn.in_waiting < 16: 
             self._req_ecg = True
+            #print("Line 100: ", self._conn.in_waiting)
             return
-        returned = unpack("=HH4BH3BHH3BHBB", self._conn.read(24))
+        #print("Running")
+        returned = unpack("=2H6B2H2B", self._conn.read(16))
+        print("Returned: ", returned)
         atr_val = returned[0]/10000 if atr else 0
         vent_val = returned[1]/10000 if vent else 0
         if atr or vent:
             self.ecg_data_update.emit(atr_val, vent_val)
             self._req_ecg = True
 
-    def send_params_to_pacemaker(self, params_to_send: Dict[str, Union[int, float]]) -> None:
+    def send_params_to_pacemaker(self, params_to_send: Dict) -> None:
         with self._lock:
             self._req_com = False
+            self._req_ecg = True
             paramarray = [12, 5, *[int(params_to_send[key]) for key in self._PARAMS_ORDER]]
             print('Sending Data:')
             print(paramarray)
-            self._conn.write(pack("=6BH3BHH3BHBB", *paramarray))
+            self._conn.write(pack("=8B2H2B", *paramarray))
             sleep(0.1)
-            self._conn.write(pack("=6BH3BHH3BHBB", *paramarray))
+            self._conn.write(pack("=8B2H2B", *paramarray))
             sleep(0.1)
 
     # Read the output stream of the pacemaker
@@ -168,6 +176,8 @@ class ConnectionHandler(QThread):
         self.ser = _SerialHandler()
         self.ser.start()
         self.ser.start_serial_comm('COM3')
+    def send_data_to_pacemaker(self, params: Dict) -> None:
+        self.ser.send_params_to_pacemaker(params)
         
 
 

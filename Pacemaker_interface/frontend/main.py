@@ -14,8 +14,9 @@ class Main(QMainWindow, Ui_MainWindow):
         self.conn.ser.ecg_data_update.connect(self.test)
         self.conn.ser.params_received.connect(self.test2)
 
-    def test(self):
-        print("Test something")
+    def test(self, atr, vtr):
+        print("Atrial data: ", atr)
+        print("Ventricular data: ", vtr)
 
     def test2(self):
         print("Test something else")
@@ -97,6 +98,54 @@ class Main(QMainWindow, Ui_MainWindow):
         print("VOO Data: ", list_parameters("VOO"))
         print("AAI Data: ", list_parameters("AAI"))
         print("VVI Data: ", list_parameters("VVI"))
+    
+    def transmitData(self):
+        data = list_parameters(self.comboBox.currentText())
+        id = config.cache['id'] - 1
+        #Set default params
+        params = {
+            'Pacing Mode': 0, 
+            'Lower Rate Limit': 60, 
+            'Maximum Sensor Rate': 120, 
+            'Atrial Amplitude': 5, 
+            'Atrial Pulse Width': 1, 
+            'Atrial Sensitivity': 4,
+            'Atrial Refractory Period': 250, 
+            'Ventricular Amplitude': 5, 
+            'Ventricular Pulse Width': 1, 
+            'Ventricular Sensitivity': 4,
+            'Ventricular Refractory Period': 320}
+        if (self.comboBox.currentText() == "AOO"):
+            params['Pacing Mode'] = 1
+            params['Lower Rate Limit'] = data[id][0]
+            params['Maximum Sensor Rate'] = data[id][1]
+            params['Atrial Pulse Width'] = data[id][2]
+            params['Atrial Amplitude'] = data[id][3]
+        elif (self.comboBox.currentText() == "VOO"):
+            params['Pacing Mode'] = 2
+            params['Lower Rate Limit'] = data[id][0]
+            params['Maximum Sensor Rate'] = data[id][1]
+            params['Ventricular Pulse Width'] = data[id][2]
+            params['Ventricular Amplitude'] = data[id][3]
+        elif (self.comboBox.currentText() == "AAI"):
+            params['Pacing Mode'] = 3
+            params['Lower Rate Limit'] = data[id][0]
+            params['Maximum Sensor Rate'] = data[id][1]
+            params['Atrial Pulse Width'] = data[id][2]
+            params['Atrial Amplitude'] = data[id][3]
+            params['Atrial Sensitivity'] = data[id][4]
+            params['Atrial Refractory Period'] = data[id][5]
+        elif (self.comboBox.currentText() == "VVI"):
+            params['Pacing Mode'] = 4
+            params['Lower Rate Limit'] = data[id][0]
+            params['Maximum Sensor Rate'] = data[id][1]
+            params['Ventricular Pulse Width'] = data[id][2]
+            params['Ventricular Amplitude'] = data[id][3]
+            params['Ventricular Sensitivity'] = data[id][4]
+            params['Ventricular Refractory Period'] = data[id][5]
+
+        self.conn.send_data_to_pacemaker(params)
+        
 
     
 
