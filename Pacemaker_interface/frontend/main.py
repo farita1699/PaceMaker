@@ -4,6 +4,7 @@ from serial_communication import ConnectionHandler
 from database.db import update_parameters, list_parameters
 import time
 import config
+from frontend.graph import Graph
 
 
 class Main(QMainWindow, Ui_MainWindow):
@@ -98,6 +99,9 @@ class Main(QMainWindow, Ui_MainWindow):
         print("AAI Data: ", list_parameters("AAI"))
         print("VVI Data: ", list_parameters("VVI"))
 
+    def open_graph(self):
+        self.graph = Graph()
+        self.graph.show()
     
 
         
