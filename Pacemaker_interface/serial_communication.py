@@ -1,4 +1,3 @@
-from enum import Enum, unique
 from struct import calcsize, pack, unpack, unpack_from
 from threading import Lock, Timer
 from time import sleep
@@ -25,19 +24,11 @@ class _SerialHandler(QThread):
     _running: bool
     _buf: bytearray
     _conn: Serial
-    _num_bytes_to_read: int
-    _sent_data: bytes
-    _send_params: bool
     _lock: Lock
 
     ecg_data_update: pyqtSignal = pyqtSignal(float, float)
 
-    params_received: pyqtSignal = pyqtSignal(bool, str)
 
-    _num_floats = 20
-    _PARAMS_FMT_STR, _ECG_FMT_STR, _ECG_DATA_STR = "=6BH3BHH3BHBB", f"={_num_floats}f", f"={_num_floats // 2}f"
-    _PARAMS_NUM_BYTES, _ECG_NUM_BYTES, _ECG_DATA = calcsize(_PARAMS_FMT_STR), calcsize(_ECG_FMT_STR), calcsize(
-        _ECG_DATA_STR)
     _PARAMS_ORDER = ["Pacing Mode", "Atrial Pulse Width", "Ventricular Pulse Width",
                     "Lower Rate Limit", "Atrial Amplitude", "Ventricular Amplitude",
                     "Atrial Refractory Period", "Ventricular Refractory Period", "Atrial Sensitivity",
@@ -50,11 +41,8 @@ class _SerialHandler(QThread):
         self._running = False
         self._buf = bytearray()
         self._conn = Serial(baudrate=115200, timeout=10)
-        self._num_bytes_to_read = self._ECG_NUM_BYTES + 1
         self._sent_data = bytes()
-        self._send_params = False
         self._req_ecg = False
-        self._req_com = True
         self.atr = True
         self.vent = True
         self._lock = Lock() 
@@ -67,10 +55,7 @@ class _SerialHandler(QThread):
             if self._conn.is_open:
                 try:
                     with self._lock:
-                        if self._send_params: 
-                            self._send_params = False
-                            self._conn.write(self._sent_data)
-                        elif self._req_ecg:
+                        if self._req_ecg:
                             self._req_ecg = False
                             # ["Pacing Mode", "Atrial Pulse Width", "Ventricular Pulse Width",
                             # "Lower Rate Limit", "Atrial Amplitude", "Ventricular Amplitude",
@@ -104,7 +89,6 @@ class _SerialHandler(QThread):
 
     def send_params_to_pacemaker(self, params_to_send: Dict) -> None:
         with self._lock:
-            self._req_com = False
             self._req_ecg = True
             
             paramarray = [12, 5, *[int(params_to_send[key]) for key in self._PARAMS_ORDER]]
@@ -116,26 +100,6 @@ class _SerialHandler(QThread):
             self._conn.write(pack("=8B2H2B", *paramarray))
             sleep(0.1)
 
-    # Read the output stream of the pacemaker
-    def _readline(self) -> bytearray:
-        buf_len: int = len(self._buf)
-
-        if buf_len >= self._num_bytes_to_read:
-            r = self._buf[:self._num_bytes_to_read]
-            self._buf = self._buf[self._num_bytes_to_read:]
-            return r
-
-        while self._running and self._conn.is_open:
-            data: Optional[bytes] = self._conn.read(self._num_bytes_to_read)
-            buf_len = len(self._buf)
-
-            if buf_len >= self._num_bytes_to_read:
-                r = self._buf[:self._num_bytes_to_read]
-                self._buf = self._buf[self._num_bytes_to_read:] + data
-                return r
-            else:
-                self._buf.extend(data)
-
     def _try_to_open_port(self) -> None:
         with self._lock:
             try:
@@ -143,13 +107,6 @@ class _SerialHandler(QThread):
                 print("Opened Port")
             except SerialException:
                 pass
-
-    def _verify_params(self, received_params: bytes) -> None:
-        if self._sent_data != bytes(received_params[:self._PARAMS_NUM_BYTES]):
-            self.params_received.emit(False, "The received parameters were not the same as the sent ones!\nPlease "
-                                             "restart the DCM/Pacemaker or try a different Pacemaker!")
-        else:
-            self.params_received.emit(True, "Successfully sent parameters!")
 
     def stop(self) -> None:
         with self._lock:
