@@ -106,23 +106,6 @@ font-size: 20px;</string>
      </property>
     </item>
    </widget>
-   <widget class="QProgressBar" name="PaceMakerConnectionStatus">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>870</y>
-      <width>301</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(231, 231, 231);
-</string>
-    </property>
-    <property name="value">
-     <number>100</number>
-    </property>
-   </widget>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
@@ -1783,6 +1766,53 @@ border-radius: 10px;</string>
     <property name="text">
      <string>Stop Signal</string>
     </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>890</y>
+      <width>391</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="Connect_Widget">
+     <widget class="QProgressBar" name="PaceMakerConnectionStatus">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-20</y>
+        <width>301</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(231, 231, 231);
+</string>
+      </property>
+      <property name="value">
+       <number>100</number>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Disconnect_Widget">
+     <widget class="QProgressBar" name="PaceMakerConnectionStatusIncomplete">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>118</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

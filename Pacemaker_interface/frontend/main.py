@@ -1,7 +1,7 @@
 from display.main import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
-from serial_communication import ConnectionHandler
+from serial_communication import ConnectionHandler, 
 from graph_window import GraphWindow
 from database.db import update_parameters, list_parameters
 import time
@@ -28,6 +28,12 @@ class Main(QMainWindow, Ui_MainWindow):
         
 
 ###New code
+    def deviceConnection(self):
+        if self.conn.ser._running():
+            self.stackedWidget_2.setCurrentWidget(self.Connect_Widget)
+        else: 
+            self.stackedWidget_2.setCurrentWidget(self.Disconnect_Widget)
+
     def switchMode(self):
         if self.comboBox.currentText() == "AOO":
             self.stackedWidget.setCurrentWidget(self.AOO_Widget)#Might have to do self.ui.AOOWIdget
