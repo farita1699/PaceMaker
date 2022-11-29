@@ -8,29 +8,27 @@ import time
 import config
 from frontend.graph import Graph
 
-
+#This class generates the dashboard
 class Main(QMainWindow, Ui_MainWindow):
-    # signal = pyqtSignal(int, int)
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
 
+        #Sets up connection handler
         self.conn = ConnectionHandler()
         self.conn.device_connected.connect(self.deviceConnection)
         self.conn.start()
         
-
+        #Sets up graph handler
         self.graph = Graph()
         self.conn.ser.ecg_data_update.connect(self.graph.update_plot)
 
     def logout(self):
         time.sleep(0.2)
         self.close()
-        # self.login = Login()
-        # self.login.show()
         
 
-###New code
+    #Configure device connection status upon first login
     def deviceConnection(self, connectionStatus):
         print(connectionStatus)
         if connectionStatus:
@@ -38,9 +36,10 @@ class Main(QMainWindow, Ui_MainWindow):
         else: 
             self.stackedWidget_2.setCurrentWidget(self.Disconnect_Widget)
 
+    #Switch mode when a new option is selected
     def switchMode(self):
         if self.comboBox.currentText() == "AOO":
-            self.stackedWidget.setCurrentWidget(self.AOO_Widget)#Might have to do self.ui.AOOWIdget
+            self.stackedWidget.setCurrentWidget(self.AOO_Widget)
         elif self.comboBox.currentText() == "VOO":
             self.stackedWidget.setCurrentWidget(self.VOO_Widget)
         elif self.comboBox.currentText() == "AAI":

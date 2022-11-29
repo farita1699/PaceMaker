@@ -53,7 +53,7 @@ class GraphWindow(PlotWidget):
                 # v_plot_wid.setXRange(size-4,size+6)
                 # v_plot_wid.enableAutoRange(x=False, y=True)
         else:
-            x = np.arange(self.maxvals - 200, self.maxvals) / time_period
+            x = np.arange(self.maxvals - 400, self.maxvals) / time_period
             self._atrial_plot.setData(x, self._atrial_data)
             # self._ventricular_plot.setData(x, self._ventricular_data)
             position = self.maxvals/time_period

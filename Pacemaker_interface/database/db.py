@@ -1,5 +1,7 @@
 import sqlite3
 import os
+
+#Creates the connection to the database by retrieving the path
 def create_connection():
     filename = os.path.abspath(__file__)
     dbdir = filename.rstrip('db.py')
@@ -7,6 +9,7 @@ def create_connection():
     conn = sqlite3.connect(dbpath)
     return conn
 
+#Initialize database tables if they do not exist
 def create_database():
     conn = create_connection()
     c = conn.cursor()
@@ -54,6 +57,7 @@ def create_database():
     conn.commit()
     conn.close()
 
+#Add new user row, along with its parameter rows (related by a foreign key)
 def insert_users(username, password):
     conn = create_connection()
     c = conn.cursor()
@@ -65,6 +69,7 @@ def insert_users(username, password):
     conn.commit()
     conn.close()
 
+#List the users
 def list_users():
     conn = create_connection()
     c = conn.cursor()
@@ -73,6 +78,7 @@ def list_users():
     conn.close()
     return results
 
+#List the parameters (dynamic through an input argument)
 def list_parameters(mode='AOO'):
     conn = create_connection()
     c = conn.cursor()
@@ -91,6 +97,7 @@ def list_parameters(mode='AOO'):
     conn.close()
     return results
 
+#Update parameters
 def update_parameters(mode, parameter, value, id):
     conn = create_connection()
     c = conn.cursor()
@@ -98,7 +105,7 @@ def update_parameters(mode, parameter, value, id):
     conn.commit()
     conn.close()
 
-#Delete for production
+#Initialize upon start
 def main():
     create_database()
     print(list_users())
