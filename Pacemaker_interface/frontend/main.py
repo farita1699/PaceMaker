@@ -1,7 +1,7 @@
 from display.main import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import pyqtSignal
-from serial_communication import ConnectionHandler, 
+from serial_communication import ConnectionHandler
 from graph_window import GraphWindow
 from database.db import update_parameters, list_parameters
 import time
@@ -16,6 +16,9 @@ class Main(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.conn = ConnectionHandler()
+        self.conn.device_connected.connect(self.deviceConnection)
+        self.conn.start()
+        
 
         self.graph = Graph()
         self.conn.ser.ecg_data_update.connect(self.graph.update_plot)
@@ -28,8 +31,9 @@ class Main(QMainWindow, Ui_MainWindow):
         
 
 ###New code
-    def deviceConnection(self):
-        if self.conn.ser._running():
+    def deviceConnection(self, connectionStatus):
+        print(connectionStatus)
+        if connectionStatus:
             self.stackedWidget_2.setCurrentWidget(self.Connect_Widget)
         else: 
             self.stackedWidget_2.setCurrentWidget(self.Disconnect_Widget)

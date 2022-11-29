@@ -20,11 +20,6 @@ for port in serial.tools.list_ports.comports():
         print(device)
 '''
 
-@unique
-class PacemakerState(Enum):
-    NOT_CONNECTED = 1
-    CONNECTED = 2
-    REGISTERED = 3
 
 class _SerialHandler(QThread):
     _running: bool
@@ -173,10 +168,25 @@ class _SerialHandler(QThread):
             self._conn.port = None
 
 class ConnectionHandler(QThread):
+    device_connected: pyqtSignal = pyqtSignal(bool)
     def __init__(self):
+        super().__init__()
+
         self.ser = _SerialHandler()
         self.ser.start()
-        self.ser.start_serial_comm('COM3')
+        # self.ser.start_serial_comm('COM3')
+          
+    def run(self):
+        self._device = self._filter_devices(list_ports.comports()) 
+        if (len(self._device)):
+                self.ser.start_serial_comm(self._device[0].device)
+                self.device_connected.emit(True)
+        else:
+            self.device_connected.emit(False)  
+
+    @staticmethod
+    def _filter_devices(data: List[ListPortInfo]) -> List[ListPortInfo]:
+        return [dev for dev in data if dev.vid == 0x1366 and dev.pid == 0x1015]
     def send_data_to_pacemaker(self, params: Dict) -> None:
         self.ser._running = True
         self.ser.send_params_to_pacemaker(params)
